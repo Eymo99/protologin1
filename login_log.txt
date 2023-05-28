@@ -1,0 +1,14 @@
+Usuario: lando - ID: 12 - Rol: user - Fecha y hora: 2023-05-23 06:10:18
+Usuario: luis - ID: 13 - Rol: user - Fecha y hora: 2023-05-23 06:25:58
+Usuario: luis - ID: 13 - Rol: user - Fecha y hora: 2023-05-22 22:29:09
+Usuario: josue - ID: 24 - Rol: user - Fecha y hora: 2023-05-25 03:34:04
+Usuario: josue - ID: 24 - Rol: user - Fecha y hora: 2023-05-24 19:40:30
+Usuario: josue - ID: 24 - Rol: user - Fecha y hora: 2023-05-26 00:19:34
+Usuario: josue - ID: 24 - Rol: user - Fecha y hora: 2023-05-26 00:27:50
+Usuario: mario - ID: 21 - Rol: admin - Fecha y hora: 2023-05-26 01:09:39
+Usuario: josue - ID: 24 - Rol: user - Fecha y hora: 2023-05-26 01:12:55
+Usuario: mario - ID: 21 - Rol: admin - Fecha y hora: 2023-05-26 01:16:43
+Usuario: lando - ID: 25 - Rol: user - Fecha y hora: 2023-05-26 01:34:47
+Usuario: lando - ID: 25 - Rol: user - Fecha y hora: 2023-05-26 01:47:38
+Usuario: lando - ID: 25 - Rol: user - Fecha y hora: 2023-05-26 01:48:24
+Usuario: lando - ID: 25 - Rol: user - Fecha y hora: 2023-05-26 02:00:53
