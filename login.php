@@ -118,11 +118,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     mysqli_stmt_execute($stmt);
                                     mysqli_stmt_close($stmt);
                                 }
+
+                                $ip_address = $_SERVER['REMOTE_ADDR'];
+                                $browser = getBrowser($_SERVER['HTTP_USER_AGENT']);
+
                                 $sql = "UPDATE users SET last_login = NOW(), ip_address = ?, browser = ? WHERE username = ?";
                                 if ($stmt = mysqli_prepare($link, $sql)) {
                                     mysqli_stmt_bind_param($stmt, "sss", $ip_address, $browser, $username);
-                                    $ip_address = $_SERVER['REMOTE_ADDR'];
-                                    $browser = getBrowser($_SERVER['HTTP_USER_AGENT']);
                                     mysqli_stmt_execute($stmt);
                                     mysqli_stmt_close($stmt);
                                 }
@@ -131,7 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     header("location: admin.php");
                                     exit;
                                 } elseif ($role === 'user') {
-
                                     header("location: user.php");
                                     exit;
                                 }
@@ -139,12 +140,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $recaptcha_err = "Por favor, completa la validación de reCAPTCHA.";
                             }
                         } else {
-
                             $password_err = "La contraseña que has ingresado no es válida.";
                             $login_attempts++;
                             if ($login_attempts >= 3) {
+                                date_default_timezone_set('America/Mexico_City');
                                 $blocked_until = date('Y-m-d H:i:s', strtotime('+5 minutes'));
-                                mysqli_stmt_close($stmt);
                                 $sql = "UPDATE users SET blocked_until = ?, login_attempts = 0 WHERE username = ?";
                                 if ($stmt = mysqli_prepare($link, $sql)) {
                                     mysqli_stmt_bind_param($stmt, "ss", $blocked_until, $username);
@@ -152,14 +152,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     mysqli_stmt_close($stmt);
                                 }
                                 $_SESSION["blocked_until"] = $blocked_until;
+                                header("Location: bloqueado.php");
+                                exit;
                             } else {
-                                mysqli_stmt_close($stmt);
                                 $sql = "UPDATE users SET login_attempts = ? WHERE username = ?";
                                 if ($stmt = mysqli_prepare($link, $sql)) {
                                     mysqli_stmt_bind_param($stmt, "is", $login_attempts, $username);
                                     mysqli_stmt_execute($stmt);
                                     mysqli_stmt_close($stmt);
-                                    $_SESSION["blocked_until"] = $blocked_until;
                                 }
                             }
                         }
